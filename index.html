@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notifications</title>
+    <meta charset=utf-8 />
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
+    <link href='site.css' rel='stylesheet' />
+    <script src='/js/jquery-2.0.3.min.js'></script>
+    <script src='/js/underscore-min.js'></script>
+    <script src='site.js'></script>
+</head>
+<body>
+
+  <div id='items'></div>
+
+  <script type='text/html' id='template-item'>
+  <div class='item pad1' style='padding-top:50px'>
+    <h3 class='pin-top fixed fill-navy dark pad1'><%- obj.notification.repository.owner.login %>/<%- obj.notification.repository.name %> <a href='<%- obj.issue.html_url %>'><%- obj.issue.title %></a></h3>
+    <div class='keyline-all pad1 space-bottom clearfix'>
+      <div class='byline space space-bottom'>
+        <img class='dot inline' src='<%= obj.issue.user.avatar_url %>' style='width:20px' />
+        <div class='inline'>by <a href='<%= obj.issue.user.html_url %>'><%= obj.issue.user.login %></a> at <%= obj.issue.created_at %></div>
+      </div>
+      <div class='prose'><%= obj.issue.body_html %></div>
+    </div>
+    <% _(obj.comments).each(function(comment) { %>
+    <div id='issuecomment-<%- comment.id %>' class='keyline-all pad1 space-bottom'>
+      <div class='byline space space-bottom'>
+        <img class='dot inline' src='<%= comment.user.avatar_url %>' style='width:20px' />
+        <div class='inline'>by <a href='<%= comment.user.html_url %>'><%= comment.user.login %></a> at <%= comment.created_at %></div>
+      </div>
+      <div class='prose'><%= comment.body_html %></div>
+    </div>
+    <% }); %>
+  </div>
+  </script>
+
+</body>
+</html>
