@@ -77,7 +77,6 @@ $(function() {
         }
         idx++;
         show();
-        console.log(idx, n.length);
         if (idx == n.length - 5) {
             load(++page);
         }
@@ -89,7 +88,6 @@ $(function() {
         var comment_id = obj.notification.subject.latest_comment_url.split('/').pop();
         $('#items').html(template(obj));
         if (obj.notification.subject.type == 'Issue' && obj.notification.last_read_at) {
-            console.log(obj);
             var id = 'issuecomment-' + _(obj.comments).find(function(comment) {
                 return +new Date(obj.notification.last_read_at) < +new Date(comment.created_at);
             }).id;
