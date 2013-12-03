@@ -14,4 +14,3 @@ jekyll and load index.html in your browser.
 - `shift` + `j` leaves the current thread unread and moves to the next one
 - `m` mutes the current thread and moves to the next one
 - `k` moves to the previous thread (even if it was marked as read)
-
