@@ -13,12 +13,22 @@
       .item { min-height:100%; }
       :target { background:#FFFDE8; }
       .headline a { color:#fff; }
+      .key-commands { position:fixed; }
     </style>
 </head>
 <body>
 
   <div class='limiter'>
     <div id='items' class='col8 margin2 pad4y'></div>
+    <div class='key-commands pin-bottom small col2 pad2x'>
+      <a href='#' id='key-commands-toggle' class='space-bottom1 col12 strong quiet'>Commands</a>
+      <ul class='note round pad1x pad2y space-bottom hidden'>
+        <li class='col12 space-bottom1 space'><kbd class='strong fill-white'>j</kbd> <span class='quiet'>Mark current thread as read and move to the next.<span></li>
+        <li class='col12 space-bottom1 space'><kbd class='strong fill-white'>shift + j</kbd> <span class='quiet'>Leave thread unread and move to the next.</span></li>
+        <li class='col12 space-bottom1 space'><kbd class='strong fill-white'>m</kbd> <span class='quiet'>Mute current thread and move to the next.</span></li>
+        <li class='col12 space'><kbd class='strong fill-white'>k</kbd> <span class='quiet'>Move to the previous thread.</span></li>
+      </ul>
+    </div>
   </div>
 
   <script type='text/html' id='template-item'>
