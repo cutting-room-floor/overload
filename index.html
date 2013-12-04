@@ -51,7 +51,9 @@
             <img class='dot inline' src='<%= comment.user.avatar_url %>' style='width:20px' />
             <div class='small quiet inline'>
               <a class='strong' href='<%= comment.user.html_url %>'><%= comment.user.login %></a>
-              on <%= created.format('M jS') %> at <%= created.format('g:ia') %>
+              on <a class='quiet' href='<%- obj.issue.html_url %>#issuecomment-<%- comment.id %>'>
+                <%= created.format('M jS') %> at <%= created.format('g:ia') %>
+              </a>
             </div>
           </div>
           <div class='pad2 prose'><%= comment.body_html %></div>
