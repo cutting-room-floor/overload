@@ -5,34 +5,60 @@
     <meta charset=utf-8 />
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
-    <link href='site.css' rel='stylesheet' />
     <script src='js/jquery-2.0.3.min.js'></script>
     <script src='js/underscore-min.js'></script>
+    <script src='js/chrono.js'></script>
     <script src='site.js'></script>
+    <style>
+      .item { min-height:100%; }
+      :target { background:#FFFDE8; }
+      .headline a { color:#fff; }
+    </style>
 </head>
 <body>
 
-  <div id='items'></div>
+  <div class='limiter'>
+    <div id='items' class='col8 margin2 pad4y'></div>
+  </div>
 
   <script type='text/html' id='template-item'>
-  <div class='item pad1' style='padding-top:50px'>
-    <h3 class='pin-top fixed fill-navy dark pad1'><%- obj.notification.repository.owner.login %>/<%- obj.notification.repository.name %> <a href='<%- obj.issue.html_url %>'><%- obj.issue.title %></a></h3>
-    <div class='keyline-all pad1 space-bottom clearfix'>
-      <div class='byline space space-bottom'>
-        <img class='dot inline' src='<%= obj.issue.user.avatar_url %>' style='width:20px' />
-        <div class='inline'>by <a href='<%= obj.issue.user.html_url %>'><%= obj.issue.user.login %></a> at <%= obj.issue.created_at %></div>
-      </div>
-      <div class='prose'><%= obj.issue.body_html %></div>
+  <% var d = new Date(Date.parse(obj.issue.created_at)); %>
+  <div class='item'>
+    <div class='headline pad2 fill-blue dark round-top'>
+      <h3 class='quiet small'>
+        <%- obj.notification.repository.name %>
+      </h3>
+      <h2><a href='<%- obj.issue.html_url %>'><%- obj.issue.title %></a></h2>
     </div>
-    <% _(obj.comments).each(function(comment) { %>
-    <div id='issuecomment-<%- comment.id %>' class='keyline-all pad1 space-bottom'>
-      <div class='byline space space-bottom'>
-        <img class='dot inline' src='<%= comment.user.avatar_url %>' style='width:20px' />
-        <div class='inline'>by <a href='<%= comment.user.html_url %>'><%= comment.user.login %></a> at <%= comment.created_at %></div>
+
+    <div class='keyline-left keyline-right keyline-bottom space-bottom4 clearfix'>
+      <div class='space space-bottom1 pad2'>
+        <img class='dot inline' src='<%= obj.issue.user.avatar_url %>' style='width:40px' />
+        <div class='small quiet inline'>
+          <a class='strong' href='<%= obj.issue.user.html_url %>'><%= obj.issue.user.login %></a>
+          on <%= d.format('M jS') %> at <%= d.format('g:ia') %>
+        </div>
       </div>
-      <div class='prose'><%= comment.body_html %></div>
+      <div class='prose pad2x space-bottom'><%= obj.issue.body_html %></div>
     </div>
-    <% }); %>
+
+    <% if (obj.comments.length) { %>
+      <div class='keyline-top keyline-left keyline-right space-bottom4'>
+        <% _(obj.comments).each(function(comment) { %>
+        <% var created = new Date(Date.parse(comment.created_at)); %>
+        <div id='issuecomment-<%- comment.id %>' class='keyline-bottom'>
+          <div class='fill-light keyline-bottom pad2x pad1y space'>
+            <img class='dot inline' src='<%= comment.user.avatar_url %>' style='width:20px' />
+            <div class='small quiet inline'>
+              <a class='strong' href='<%= comment.user.html_url %>'><%= comment.user.login %></a>
+              on <%= created.format('M jS') %> at <%= created.format('g:ia') %>
+            </div>
+          </div>
+          <div class='pad2 prose'><%= comment.body_html %></div>
+        </div>
+        <% }); %>
+      </div>
+    <% } %>
   </div>
   </script>
 
