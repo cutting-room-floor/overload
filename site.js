@@ -115,7 +115,10 @@ $(function() {
         }
     });
 
-
+    $('#key-commands-toggle').click(function() {
+        $(this).siblings().toggle();
+        return false;
+    });
 });
 
 function getCookie(name) {
