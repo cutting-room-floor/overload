@@ -1,4 +1,4 @@
-var token = getCookie('access_token');
+ var token = getCookie('access_token');
 
 $(function() {
 
@@ -115,10 +115,39 @@ $(function() {
         }
     });
 
+    $('.js-prev').on('click', function(e) {
+      prev();
+    });
+
+    $('.js-next').on('click', function(e) {
+      next(e.shiftKey);
+    });
+
     $('#key-commands-toggle').click(function() {
         $(this).siblings().toggle();
         return false;
     });
+
+   if ( $(window).width() < '700' ) {
+
+        $('body').swipe( {
+            swipeLeft:swipeBack,
+            swipeRight:swipeForward,
+            allowPageScroll:'auto'
+        } );
+
+        $('body').addClass('touchdevice');
+
+        function swipeBack(event, direction) {
+            prev();
+        };
+
+        function swipeForward(event, direction) {
+            next();
+        };
+
+   }
+
 });
 
 function getCookie(name) {
