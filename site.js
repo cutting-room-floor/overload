@@ -1,4 +1,4 @@
-var token = getCookie('access_token');
+var token = '45ecd46dc0e2cc495f639ec09e1f8b660a39543d';
 
 $(function() {
 
@@ -113,6 +113,14 @@ $(function() {
             case 75: prev(); break;
             case 77: next(false, true); break;
         }
+    });
+
+    $('.js-prev').on('click', function(e) {
+      prev();
+    });
+
+    $('.js-next').on('click', function(e) {
+      next(e.shiftKey);
     });
 
     $('#key-commands-toggle').click(function() {
