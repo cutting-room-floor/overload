@@ -14,6 +14,17 @@
       :target { background:#FFFDE8; }
       .headline a { color:#fff; }
       .key-commands { position:fixed; }
+      .headline {
+        position: fixed;
+        width: 55.6%;
+        top: 0;
+        max-width: 667px;
+      }
+      @media only screen and (max-width: 640px) {
+        .headline {
+          width: 63.5%;
+        }
+      }
     </style>
 </head>
 <body>
@@ -34,7 +45,7 @@
   <script type='text/html' id='template-item'>
   <% var d = new Date(Date.parse(obj.issue.created_at)); %>
   <div class='item'>
-    <div class='headline pad2 fill-blue dark round-top'>
+    <div class='headline pad2 fill-blue dark'>
       <h3 class='quiet small'>
         <%- obj.notification.repository.name %>
       </h3>
