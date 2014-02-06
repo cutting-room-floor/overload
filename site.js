@@ -115,6 +115,14 @@ $(function() {
         }
     });
 
+    $('.js-prev').on('click', function(e) {
+      prev();
+    });
+
+    $('.js-next').on('click', function(e) {
+      next(e.shiftKey);
+    });
+
     $('#key-commands-toggle').click(function() {
         $(this).siblings().toggle();
         return false;
