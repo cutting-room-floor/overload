@@ -1,5 +1,4 @@
-var token = '45ecd46dc0e2cc495f639ec09e1f8b660a39543d';
-// var token = getCookie('access_token');
+ var token = getCookie('access_token');
 
 $(function() {
 
