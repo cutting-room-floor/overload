@@ -1,4 +1,5 @@
-var token = getCookie('access_token');
+var token = '45ecd46dc0e2cc495f639ec09e1f8b660a39543d';
+// var token = getCookie('access_token');
 
 $(function() {
 
@@ -127,6 +128,27 @@ $(function() {
         $(this).siblings().toggle();
         return false;
     });
+
+   if ( $(window).width() < '700' ) {
+
+        $('body').swipe( {
+            swipeLeft:swipeBack,
+            swipeRight:swipeForward,
+            allowPageScroll:'auto'
+        } );
+
+        $('body').addClass('touchdevice');
+
+        function swipeBack(event, direction) {
+            prev();
+        };
+
+        function swipeForward(event, direction) {
+            next();
+        };
+
+   }
+
 });
 
 function getCookie(name) {
