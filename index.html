@@ -20,10 +20,20 @@
         top: 0;
         max-width: 667px;
       }
+      @media only screen and (max-width: 900px) {
+        .headline {
+          left: 0px;
+          right: 0px;
+          width: auto;
+          max-width: none;
+        }
+      }
       @media only screen and (max-width: 640px) {
         .headline {
-          width: 63.5%;
+          left: 20px;
+          right: 20px;
         }
+        .item { margin-top: 20px;}
       }
     </style>
 </head>
@@ -44,18 +54,18 @@
 
   <script type='text/html' id='template-item'>
   <% var d = new Date(Date.parse(obj.issue.created_at)); %>
-  <div class='item'>
+  <div class='item pad4y'>
     <div class='headline pad2 fill-blue dark'>
       <h3 class='quiet small'>
         <%- obj.notification.repository.name %>
       </h3>
-      <h2><a href='<%- obj.issue.html_url %>'><%- obj.issue.title %></a></h2>
+      <h3><a href='<%- obj.issue.html_url %>'><%- obj.issue.title %></a></h3>
     </div>
 
     <div class='keyline-left keyline-right keyline-bottom space-bottom4 clearfix'>
-      <div class='space space-bottom1 pad2'>
+      <div class='space space-bottom1 pad2 fill-denim dark keyline-bottom'>
         <img class='dot inline' src='<%= obj.issue.user.avatar_url %>' style='width:40px' />
-        <div class='small quiet inline'>
+        <div class='small quiet pad1y inline'>
           <a class='strong' href='<%= obj.issue.user.html_url %>'><%= obj.issue.user.login %></a>
           on <%= d.format('M jS') %> at <%= d.format('g:ia') %>
         </div>
